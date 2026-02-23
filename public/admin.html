@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard – AI4Biz Student Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+  <script>
+    // Auth guard — redirect to login if no token
+    if (!sessionStorage.getItem('ai4biz_admin_token')) {
+      window.location.href = '/admin-login.html';
+    }
+  </script>
+</head>
+<body class="admin-body">
+
+  <!-- ─── Admin Navbar ──────────────────────────────────────────────────────── -->
+  <nav class="admin-nav">
+    <div class="admin-nav-container">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon"><i class="fa-solid fa-brain"></i></span>
+        <span class="brand-text">AI<span class="brand-accent">4</span>Biz</span>
+        <span class="admin-badge">Admin</span>
+      </a>
+      <div class="admin-nav-actions">
+        <button class="btn btn-outline-sm" id="refreshBtn" title="Refresh data">
+          <i class="fa-solid fa-rotate-right"></i> Refresh
+        </button>
+        <a href="/" class="btn btn-outline-sm">
+          <i class="fa-solid fa-arrow-left"></i> Back to Site
+        </a>
+        <button class="btn btn-outline-sm" id="logoutBtn" style="color:#fca5a5;border-color:rgba(239,68,68,0.3);">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+
+    <!-- ─── Sidebar ──────────────────────────────────────────────────────────── -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Overview</p>
+        <a href="#" class="sidebar-link active" data-view="dashboard">
+          <i class="fa-solid fa-chart-pie"></i> Dashboard
+        </a>
+        <a href="#" class="sidebar-link" data-view="students">
+          <i class="fa-solid fa-users"></i> All Students
+        </a>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Filter by Demo</p>
+        <a href="#" class="sidebar-link" data-view="students" data-filter-demo="Registered">
+          <i class="fa-solid fa-clock"></i> Registered
+        </a>
+        <a href="#" class="sidebar-link" data-view="students" data-filter-demo="Attended">
+          <i class="fa-solid fa-circle-check"></i> Attended
+        </a>
+        <a href="#" class="sidebar-link" data-view="students" data-filter-demo="Not Attended">
+          <i class="fa-solid fa-circle-xmark"></i> Not Attended
+        </a>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Filter by Enrollment</p>
+        <a href="#" class="sidebar-link" data-view="students" data-filter-enrollment="Enrolled">
+          <i class="fa-solid fa-user-check"></i> Enrolled
+        </a>
+        <a href="#" class="sidebar-link" data-view="students" data-filter-enrollment="Not Enrolled">
+          <i class="fa-solid fa-user-xmark"></i> Not Enrolled
+        </a>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Filter by Payment</p>
+        <a href="#" class="sidebar-link" data-view="students" data-filter-payment="Full Paid">
+          <i class="fa-solid fa-circle-dollar-to-slot"></i> Full Paid
+        </a>
+        <a href="#" class="sidebar-link" data-view="students" data-filter-payment="Registration Paid">
+          <i class="fa-solid fa-receipt"></i> Reg. Paid
+        </a>
+        <a href="#" class="sidebar-link" data-view="students" data-filter-payment="Not Paid">
+          <i class="fa-solid fa-ban"></i> Not Paid
+        </a>
+      </div>
+    </aside>
+
+    <!-- ─── Main Content ──────────────────────────────────────────────────────── -->
+    <main class="admin-main">
+
+      <!-- Dashboard View -->
+      <div id="view-dashboard" class="admin-view">
+        <div class="admin-page-header">
+          <h1>Dashboard <span class="header-sub">Overview</span></h1>
+          <p id="lastUpdated" class="text-muted"></p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-card">
+            <div class="stat-card-icon" style="--c:#6c63ff"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-card-body">
+              <p class="stat-card-label">Total Registrations</p>
+              <p class="stat-card-value" id="stat-total">–</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon" style="--c:#06d6a0"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-card-body">
+              <p class="stat-card-label">Demo Attended</p>
+              <p class="stat-card-value" id="stat-attended">–</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon" style="--c:#f72585"><i class="fa-solid fa-user-check"></i></div>
+            <div class="stat-card-body">
+              <p class="stat-card-label">Enrolled</p>
+              <p class="stat-card-value" id="stat-enrolled">–</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon" style="--c:#ffd166"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+            <div class="stat-card-body">
+              <p class="stat-card-label">Full Paid</p>
+              <p class="stat-card-value" id="stat-fullpaid">–</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Breakdown -->
+        <div class="breakdown-grid">
+          <div class="breakdown-card">
+            <h3><i class="fa-solid fa-chart-bar"></i> Demo Status</h3>
+            <div id="demo-breakdown" class="breakdown-bars"></div>
+          </div>
+          <div class="breakdown-card">
+            <h3><i class="fa-solid fa-chart-bar"></i> Payment Status</h3>
+            <div id="payment-breakdown" class="breakdown-bars"></div>
+          </div>
+        </div>
+
+        <div class="dashboard-quick-actions">
+          <h3>Quick Actions</h3>
+          <div class="quick-action-btns">
+            <button class="btn btn-primary" onclick="switchView('students')">
+              <i class="fa-solid fa-users"></i> View All Students
+            </button>
+            <button class="btn btn-outline" id="downloadXlsxBtn">
+              <i class="fa-solid fa-file-excel" style="color:#22c55e;"></i> Download XLS
+            </button>
+            <button class="btn btn-outline" id="downloadPdfBtn">
+              <i class="fa-solid fa-file-pdf" style="color:#ef4444;"></i> Download PDF
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Students View -->
+      <div id="view-students" class="admin-view" style="display:none;">
+        <div class="admin-page-header">
+          <div>
+            <h1>Students <span class="header-sub" id="studentsViewLabel">All Registrations</span></h1>
+            <p class="text-muted" id="studentsCount"></p>
+          </div>
+          <button class="btn btn-outline-sm" onclick="clearFiltersAndLoad()">
+            <i class="fa-solid fa-filter-circle-xmark"></i> Clear Filters
+          </button>
+        </div>
+
+        <!-- Search + Filters Bar -->
+        <div class="table-toolbar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search by name, email, or phone…" />
+          </div>
+          <div class="filter-group">
+            <select id="filterDemo" class="filter-select">
+              <option value="">All Demo Status</option>
+              <option value="Registered">Registered</option>
+              <option value="Attended">Attended</option>
+              <option value="Not Attended">Not Attended</option>
+            </select>
+            <select id="filterEnrollment" class="filter-select">
+              <option value="">All Enrollment</option>
+              <option value="Enrolled">Enrolled</option>
+              <option value="Not Enrolled">Not Enrolled</option>
+            </select>
+            <select id="filterPayment" class="filter-select">
+              <option value="">All Payment</option>
+              <option value="Not Paid">Not Paid</option>
+              <option value="Registration Paid">Reg. Paid</option>
+              <option value="Full Paid">Full Paid</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+          <table class="students-table" id="studentsTable">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Board</th>
+                <th>Class</th>
+                <th>Demo</th>
+                <th>Enrollment</th>
+                <th>Payment</th>
+                <th>Registered</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="studentsTableBody">
+              <tr>
+                <td colspan="11" class="table-loading">
+                  <i class="fa-solid fa-spinner fa-spin"></i> Loading students…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ─── Status Update Modal ───────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="modalOverlay" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-pen-to-square"></i> Update Student Status</h3>
+        <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-student-name" id="modalStudentName"></p>
+
+        <div class="modal-form-group">
+          <label>Demo Status</label>
+          <select id="modalDemoStatus" class="modal-select">
+            <option value="Registered">Registered</option>
+            <option value="Attended">Attended</option>
+            <option value="Not Attended">Not Attended</option>
+          </select>
+        </div>
+        <div class="modal-form-group">
+          <label>Enrollment Status</label>
+          <select id="modalEnrollmentStatus" class="modal-select">
+            <option value="Not Enrolled">Not Enrolled</option>
+            <option value="Enrolled">Enrolled</option>
+          </select>
+        </div>
+        <div class="modal-form-group">
+          <label>Payment Status</label>
+          <select id="modalPaymentStatus" class="modal-select">
+            <option value="Not Paid">Not Paid</option>
+            <option value="Registration Paid">Registration Paid</option>
+            <option value="Full Paid">Full Paid</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="modalCancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="modalSaveBtn">
+          <i class="fa-solid fa-floppy-disk"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Delete Confirm Modal ─────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="deleteModalOverlay" style="display:none;">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-triangle-exclamation"></i> Confirm Delete</h3>
+        <button class="modal-close" id="deleteModalClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete <strong id="deleteStudentName"></strong>? This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="deleteCancelBtn">Cancel</button>
+        <button class="btn btn-danger" id="deleteConfirmBtn">
+          <i class="fa-solid fa-trash"></i> Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Toast Notification ────────────────────────────────────────────────── -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

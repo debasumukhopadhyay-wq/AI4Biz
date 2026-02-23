@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login – AI4Biz Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #6c63ff;
+      --primary-dark: #4f46e5;
+      --bg: #0a0e1a;
+      --bg-card: #111827;
+      --border: rgba(255,255,255,0.08);
+      --border-accent: rgba(108,99,255,0.35);
+      --text: #f1f5f9;
+      --text-muted: #64748b;
+      --text-secondary: #94a3b8;
+      --accent: #f72585;
+      --grad: linear-gradient(135deg,#6c63ff,#f72585);
+      --radius: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.2;
+      pointer-events: none;
+    }
+    .orb-1 { width:500px;height:500px;background:radial-gradient(circle,#6c63ff,transparent);top:-150px;left:-150px; }
+    .orb-2 { width:400px;height:400px;background:radial-gradient(circle,#f72585,transparent);bottom:-100px;right:-100px; }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-accent);
+      border-radius: 24px;
+      padding: 48px 44px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.6), 0 0 32px rgba(108,99,255,0.15);
+      animation: slideUp .4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    .brand i { color: var(--primary); }
+    .brand-accent { color: var(--primary); }
+
+    .badge {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .badge span {
+      padding: 4px 14px;
+      background: rgba(247,37,133,.12);
+      border: 1px solid rgba(247,37,133,.3);
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 700;
+      color: #f72585;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: .85rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+    label {
+      display: block;
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+    }
+    .input-wrap { position: relative; }
+    .input-wrap i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: .85rem;
+    }
+    input {
+      width: 100%;
+      padding: 13px 14px 13px 38px;
+      background: rgba(255,255,255,.04);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: .9rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: all .25s ease;
+    }
+    input:focus {
+      border-color: var(--primary);
+      background: rgba(108,99,255,.06);
+      box-shadow: 0 0 0 3px rgba(108,99,255,.15);
+    }
+    input::placeholder { color: var(--text-muted); }
+
+    .toggle-pw {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: .85rem;
+      padding: 4px;
+      transition: color .2s;
+    }
+    .toggle-pw:hover { color: var(--text-secondary); }
+
+    .error-msg {
+      display: none;
+      padding: 11px 14px;
+      background: rgba(247,37,133,.1);
+      border: 1px solid rgba(247,37,133,.3);
+      border-radius: 8px;
+      font-size: .82rem;
+      color: #fca5a5;
+      margin-bottom: 16px;
+      align-items: center;
+      gap: 8px;
+    }
+    .error-msg.show { display: flex; }
+
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: var(--grad);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: .95rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(108,99,255,.4);
+      transition: all .25s ease;
+      margin-top: 8px;
+    }
+    .btn-login:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-2px); }
+    .btn-login:disabled { opacity: .6; cursor: not-allowed; }
+
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: .82rem;
+      color: var(--text-muted);
+    }
+    .back-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .back-link a:hover { text-decoration: underline; }
+
+    .security-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: .75rem;
+      color: var(--text-muted);
+    }
+    .security-note i { color: #06d6a0; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="card">
+    <div class="brand">
+      <i class="fa-solid fa-brain"></i>
+      AI<span class="brand-accent">4</span>Biz
+    </div>
+    <div class="badge"><span><i class="fa-solid fa-lock"></i> &nbsp;Admin Access</span></div>
+
+    <h2>Admin Login</h2>
+    <p class="subtitle">Restricted area. Authorised personnel only.</p>
+
+    <div class="error-msg" id="errorMsg">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span id="errorText">Invalid username or password.</span>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <div class="input-wrap">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" id="username" autocomplete="username" placeholder="Admin username" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="password" autocomplete="current-password" placeholder="Admin password" required />
+          <button type="button" class="toggle-pw" id="togglePw" aria-label="Toggle password">
+            <i class="fa-solid fa-eye" id="togglePwIcon"></i>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-login" id="loginBtn">
+        <span id="btnText"><i class="fa-solid fa-right-to-bracket"></i> Sign In</span>
+        <span id="btnLoading" style="display:none;"><i class="fa-solid fa-spinner fa-spin"></i> Signing in…</span>
+      </button>
+    </form>
+
+    <div class="security-note">
+      <i class="fa-solid fa-shield-halved"></i>
+      Session expires in 24 hours. Student data is encrypted in transit.
+    </div>
+
+    <p class="back-link">
+      <a href="/"><i class="fa-solid fa-arrow-left"></i> Back to Registration Portal</a>
+    </p>
+  </div>
+
+  <script>
+    // Redirect if already logged in
+    if (sessionStorage.getItem('ai4biz_admin_token')) {
+      window.location.href = '/admin.html';
+    }
+
+    const form    = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+    const errorTxt = document.getElementById('errorText');
+    const btnText  = document.getElementById('btnText');
+    const btnLoad  = document.getElementById('btnLoading');
+    const loginBtn = document.getElementById('loginBtn');
+    const togglePw = document.getElementById('togglePw');
+    const pwInput  = document.getElementById('password');
+    const pwIcon   = document.getElementById('togglePwIcon');
+
+    togglePw.addEventListener('click', () => {
+      const isHidden = pwInput.type === 'password';
+      pwInput.type = isHidden ? 'text' : 'password';
+      pwIcon.className = isHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMsg.classList.remove('show');
+
+      const username = document.getElementById('username').value.trim();
+      const password = pwInput.value;
+
+      if (!username || !password) {
+        errorTxt.textContent = 'Please enter both username and password.';
+        errorMsg.classList.add('show');
+        return;
+      }
+
+      loginBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoad.style.display = 'inline-flex';
+
+      try {
+        const res = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          sessionStorage.setItem('ai4biz_admin_token', data.token);
+          window.location.href = '/admin.html';
+        } else {
+          errorTxt.textContent = data.message || 'Invalid credentials.';
+          errorMsg.classList.add('show');
+          loginBtn.disabled = false;
+          btnText.style.display = 'inline-flex';
+          btnLoad.style.display = 'none';
+        }
+      } catch {
+        errorTxt.textContent = 'Network error. Please try again.';
+        errorMsg.classList.add('show');
+        loginBtn.disabled = false;
+        btnText.style.display = 'inline-flex';
+        btnLoad.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

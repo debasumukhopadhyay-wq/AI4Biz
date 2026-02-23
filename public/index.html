@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI4Biz – Build Real AI applications - A journey from ideas to reality</title>
+  <meta name="description" content="Join AI4Biz's 3-month hands-on course on building AI applications with Claude LLM, Node.js, and CI/CD. Free demo class available!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon"><i class="fa-solid fa-brain"></i></span>
+        <span class="brand-text">AI<span class="brand-accent">4</span>Biz</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#about">Curriculum</a></li>
+        <li><a href="#fees">Fees</a></li>
+        <li><a href="#register" class="nav-cta">Register Free</a></li>
+        <li><a href="/admin.html" class="nav-admin"><i class="fa-solid fa-lock"></i> Admin</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       HERO / ADVERTISEMENT BANNER
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Limited Seats Available — Batch Starting March / April 2026</span>
+      </div>
+
+      <h1 class="hero-title">
+        Build Real <span class="gradient-text">AI applications</span><br/>
+        A journey from ideas to reality
+      </h1>
+
+      <p class="hero-subtitle">
+        For students completing <strong>ICSE, CBSE &amp; West Bengal Board</strong> exams.<br/>
+        Don't just learn coding — learn how modern AI engineers build real products.
+      </p>
+
+      <div class="hero-tags">
+        <span class="tag"><i class="fa-brands fa-node-js"></i> Node.js</span>
+        <span class="tag"><i class="fa-solid fa-robot"></i> Claude LLM</span>
+        <span class="tag"><i class="fa-brands fa-github"></i> CI/CD</span>
+        <span class="tag"><i class="fa-solid fa-diagram-project"></i> Spec-Driven Dev</span>
+      </div>
+
+      <div class="hero-cta-group">
+        <a href="#register" class="btn btn-primary btn-large">
+          <i class="fa-solid fa-graduation-cap"></i>
+          Register for FREE Demo
+        </a>
+        <a href="#about" class="btn btn-outline btn-large">
+          <i class="fa-solid fa-book-open"></i>
+          View Curriculum
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Months</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Classes</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">₹0</span>
+          <span class="stat-label">Demo Cost</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Hands-on</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <span>Scroll to explore</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       FREE DEMO HIGHLIGHT STRIP
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="demo-strip">
+    <div class="demo-strip-container">
+      <div class="demo-strip-icon">
+        <i class="fa-solid fa-gift"></i>
+      </div>
+      <div class="demo-strip-content">
+        <h3>FREE 1-Hour Demo Class</h3>
+        <p>No payment required. Attend one classroom session completely FREE. Pay only if you choose to continue.</p>
+      </div>
+      <a href="#register" class="btn btn-white">
+        Claim Your Free Seat <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       ABOUT / PROGRAM HIGHLIGHTS
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Why AI4Biz?</span>
+        <h2 class="section-title">What Makes This Program <span class="gradient-text">Advanced?</span></h2>
+        <p class="section-subtitle">A 3-month hands-on classroom program that teaches you to think and build like a real AI engineer.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon" style="--icon-color: #6c63ff;">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <h3>Build AI Applications</h3>
+          <p>Create real AI-powered apps using Anthropic's Claude LLM through structured API integration and prompt engineering.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--icon-color: #00b4d8;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <h3>Fundamentals of GenAI &amp; Agentic AI</h3>
+          <p>Understand how Large Language Models work, how to build Agentic AI systems, and how to design AI-driven workflows that act autonomously.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--icon-color: #f72585;">
+            <i class="fa-brands fa-github"></i>
+          </div>
+          <h3>CI/CD with GitHub</h3>
+          <p>Build automated pipelines — lint, test, and deploy your projects using GitHub Actions, just like real dev teams.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--icon-color: #06d6a0;">
+            <i class="fa-solid fa-diagram-project"></i>
+          </div>
+          <h3>Spec-Driven Development</h3>
+          <p>Learn the structured methodology AI startups use: write specs → design systems → generate with LLMs → validate.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--icon-color: #ffd166;">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+          </div>
+          <h3>Deploy Real Applications</h3>
+          <p>Ship a working application to the cloud. Leave with a live URL and a GitHub repo to show in any interview.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="--icon-color: #ef476f;">
+            <i class="fa-solid fa-plug-circle-bolt"></i>
+          </div>
+          <h3>Real LLM Workflows</h3>
+          <p>Understand how to integrate LLM APIs into production systems — beyond chatbots, into real data-processing workflows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       OUTCOME SECTION
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="outcomes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">By the End of the Course</span>
+        <h2 class="section-title">What You'll <span class="gradient-text">Walk Away With</span></h2>
+      </div>
+      <div class="outcomes-grid">
+        <div class="outcome-item">
+          <div class="outcome-check"><i class="fa-solid fa-check"></i></div>
+          <div>
+            <h4>A Real AI-Powered Application</h4>
+            <p>Built by you, deployed live, ready to show employers and colleges.</p>
+          </div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check"><i class="fa-solid fa-check"></i></div>
+          <div>
+            <h4>CI/CD Enabled GitHub Repository</h4>
+            <p>A professional project with automated testing and deployment pipelines.</p>
+          </div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check"><i class="fa-solid fa-check"></i></div>
+          <div>
+            <h4>Spec-Driven AI Development Skills</h4>
+            <p>The ability to build production systems using LLMs methodically.</p>
+          </div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check"><i class="fa-solid fa-check"></i></div>
+          <div>
+            <h4>Strong Foundation Before College</h4>
+            <p>Start your degree already knowing how real software teams work.</p>
+          </div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check"><i class="fa-solid fa-check"></i></div>
+          <div>
+            <h4>Industry-Style Workflow Experience</h4>
+            <p>Exposure to real tools: Node.js, MongoDB, GitHub Actions, Claude API.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       FEES SECTION
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section section-light" id="fees">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Transparent Pricing</span>
+        <h2 class="section-title">Simple, <span class="gradient-text">No-Surprise Fees</span></h2>
+        <p class="section-subtitle">Try before you commit. Attend the demo. Pay only if you love it.</p>
+      </div>
+
+      <div class="fees-grid">
+        <div class="fee-card fee-free">
+          <div class="fee-badge">Start Here</div>
+          <div class="fee-icon"><i class="fa-solid fa-gift"></i></div>
+          <h3>Free Demo Class</h3>
+          <div class="fee-price">
+            <span class="currency">₹</span><span class="amount">0</span>
+          </div>
+          <p>1 full hour of classroom learning — completely free, no strings attached.</p>
+          <ul class="fee-features">
+            <li><i class="fa-solid fa-check"></i> 1-hour live classroom session</li>
+            <li><i class="fa-solid fa-check"></i> Meet the instructor</li>
+            <li><i class="fa-solid fa-check"></i> See the course content</li>
+            <li><i class="fa-solid fa-check"></i> Decide after attending</li>
+          </ul>
+          <a href="#register" class="btn btn-primary btn-full">Register Free Now</a>
+        </div>
+
+        <div class="fee-card fee-full featured">
+          <div class="fee-badge popular">Full Course</div>
+          <div class="fee-icon"><i class="fa-solid fa-rocket"></i></div>
+          <h3>Complete Program</h3>
+          <div class="fee-price">
+            <span class="currency">₹</span><span class="amount">6,000</span>
+          </div>
+          <p>Everything you need to become a real AI application developer in 3 months.</p>
+          <ul class="fee-features">
+            <li><i class="fa-solid fa-check"></i> Registration Fee: ₹1,000</li>
+            <li><i class="fa-solid fa-check"></i> Course Fee: ₹5,000</li>
+            <li><i class="fa-solid fa-check"></i> 12 hands-on classes</li>
+            <li><i class="fa-solid fa-check"></i> 3 months duration</li>
+            <li><i class="fa-solid fa-check"></i> Real project deployment</li>
+            <li><i class="fa-solid fa-check"></i> Certificate on completion</li>
+          </ul>
+          <a href="#register" class="btn btn-primary btn-full">Secure Your Seat</a>
+          <p class="fee-note">Payment required before 2nd class. Registration fee paid after demo.</p>
+        </div>
+      </div>
+
+      <div class="batch-info">
+        <i class="fa-solid fa-calendar-days"></i>
+        <div>
+          <strong>Batch Start:</strong> 3rd Week of March – 1st Week of April 2026
+          <br/><span>Exact date will be communicated after registration.</span>
+        </div>
+      </div>
+      <div class="batch-info" style="margin-top:12px;">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <strong>Location:</strong> Basunagar, Madhyamgram
+          <br/><span>Classroom sessions held at our Madhyamgram centre.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       REGISTRATION FORM
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="register">
+    <div class="container">
+      <div class="register-wrapper">
+        <div class="register-info">
+          <span class="section-label">Join AI4Biz</span>
+          <h2 class="section-title">Register for the<br/><span class="gradient-text">FREE Demo Class</span></h2>
+          <p>Fill in your details below. Our team will confirm your seat and share the demo class schedule.</p>
+
+          <div class="register-benefits">
+            <div class="benefit">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>No payment now. Decide after the demo.</span>
+            </div>
+            <div class="benefit">
+              <i class="fa-solid fa-users"></i>
+              <span>Limited seats — register early.</span>
+            </div>
+            <div class="benefit">
+              <i class="fa-solid fa-clock"></i>
+              <span>1-hour classroom session, zero obligation.</span>
+            </div>
+          </div>
+
+          <div class="eligibility-tags">
+            <span class="elig-tag"><i class="fa-solid fa-school"></i> ICSE Board</span>
+            <span class="elig-tag"><i class="fa-solid fa-school"></i> CBSE Board</span>
+            <span class="elig-tag"><i class="fa-solid fa-school"></i> West Bengal Board</span>
+            <span class="elig-tag"><i class="fa-solid fa-graduation-cap"></i> Secondary Passed</span>
+            <span class="elig-tag"><i class="fa-solid fa-graduation-cap"></i> Higher Secondary Passed</span>
+          </div>
+        </div>
+
+        <div class="register-form-container">
+          <!-- Success State -->
+          <div class="form-success" id="formSuccess" style="display:none;">
+            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h3>Registration Successful!</h3>
+            <p id="successStudentId"></p>
+            <p id="successMessage"></p>
+            <a href="#about" class="btn btn-primary">Explore the Curriculum</a>
+          </div>
+
+          <!-- Registration Form -->
+          <form class="register-form" id="registerForm" novalidate>
+            <h3 class="form-title">
+              <i class="fa-solid fa-user-plus"></i> Student Registration
+            </h3>
+            <p class="form-subtitle">All fields are mandatory</p>
+
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="required">*</span></label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-user input-icon"></i>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" autocomplete="name" required />
+              </div>
+              <span class="field-error" id="fullName-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required />
+                <span class="input-status" id="email-status"></span>
+              </div>
+              <span class="field-error" id="email-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Mobile Number <span class="required">*</span></label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-phone input-icon"></i>
+                <span class="input-prefix">+91</span>
+                <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" autocomplete="tel" maxlength="10" required />
+                <span class="input-status" id="phone-status"></span>
+              </div>
+              <span class="field-error" id="phone-error"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="board">Board <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-building-columns input-icon"></i>
+                  <select id="board" name="board" required>
+                    <option value="">Select board</option>
+                    <option value="ICSE">ICSE</option>
+                    <option value="CBSE">CBSE</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Others">Others</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down select-arrow"></i>
+                </div>
+                <span class="field-error" id="board-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="classCompleted">Class Completed <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-graduation-cap input-icon"></i>
+                  <select id="classCompleted" name="classCompleted" required>
+                    <option value="">Select class</option>
+                    <option value="Secondary">Secondary (Class 10)</option>
+                    <option value="Higher Secondary">Higher Secondary (Class 12)</option>
+                    <option value="Others">Others</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down select-arrow"></i>
+                </div>
+                <span class="field-error" id="classCompleted-error"></span>
+              </div>
+            </div>
+
+            <div class="form-notice">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>By registering, you agree to attend the free demo class. No payment is required at this stage.</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full btn-submit" id="submitBtn">
+              <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Register for Free Demo</span>
+              <span class="btn-loading" style="display:none;"><i class="fa-solid fa-spinner fa-spin"></i> Registering...</span>
+            </button>
+
+            <div class="form-error-global" id="globalError" style="display:none;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="brand-icon"><i class="fa-solid fa-brain"></i></span>
+        <span class="brand-text">AI<span class="brand-accent">4</span>Biz</span>
+        <p>Building the next generation of AI engineers — one spec at a time.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About the Program</a></li>
+          <li><a href="#about">Curriculum</a></li>
+          <li><a href="#fees">Fees &amp; Schedule</a></li>
+          <li><a href="#register">Register Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Get in Touch</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Basunagar, Madhyamgram</p>
+        <p><i class="fa-solid fa-envelope"></i> info@ai4biz.in</p>
+        <p><i class="fa-brands fa-whatsapp"></i> WhatsApp us for details</p>
+        <p class="footer-seats-notice">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          Limited seats. Register early!
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 AI4Biz. All rights reserved. | Basunagar, Madhyamgram | Batch: March/April 2026</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
